@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <footer th:fragment="stampFooter" class="text-center text-muted small py-3 border-top mt-4">
+    <span th:text="${'실습 수행 일시: ' + #temporals.format(#temporals.createNow(), 'yyyy년 MM월 dd일 HH:mm:ss')}"></span>
+    &nbsp;│&nbsp; 학번: <b>2171394</b> &nbsp;│&nbsp; 성명: <b>채민수</b>
+  </footer>
+</body>
+</html>
