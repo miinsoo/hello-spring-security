@@ -58,6 +58,11 @@
            sec:authorize="hasRole('ADMIN')">+ 상품 등록</a>
     </div>
 
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${successMessage}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
     <form th:action="@{/products}" method="get" class="d-flex gap-2 mb-4">
         <input type="text" name="keyword" class="form-control" placeholder="상품명 검색"
                th:value="${keyword}"/>
@@ -105,10 +110,14 @@
                             <td class="text-center text-muted small"
                                 th:text="${#temporals.format(p.createdAt, 'yyyy-MM-dd')}"></td>
                             <td class="text-center" sec:authorize="hasRole('ADMIN')">
-                                <form th:action="@{/products/{id}/delete(id=${p.id})}" method="post"
-                                      onsubmit="return confirm('삭제하시겠습니까?')">
-                                    <button class="btn btn-outline-danger btn-sm">삭제</button>
-                                </form>
+                                <div class="d-flex gap-1 justify-content-center">
+                                    <a th:href="@{/products/{id}/edit(id=${p.id})}"
+                                       class="btn btn-outline-primary btn-sm">수정</a>
+                                    <form th:action="@{/products/{id}/delete(id=${p.id})}" method="post"
+                                          onsubmit="return confirm('삭제하시겠습니까?')">
+                                        <button class="btn btn-outline-danger btn-sm">삭제</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
